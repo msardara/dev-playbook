@@ -1,0 +1,153 @@
+---
+# Configure the dotfiles
+configure_dotfiles: true
+dotfiles_repo: https://github.com/msardara/dotfiles.git
+dotfiles_repo_version: main
+dotfiles_repo_accept_hostkey: true
+dotfiles_repo_local_destination: ~/.dotfiles
+dotfiles_home: "~"
+dotfiles_files:
+  - .aliases
+  - .bash_profile
+  - .bash_prompt
+  - .bashrc
+  - .curlrc
+  - .editorconfig
+  - .exports
+  - .extra
+  - .functions
+  - .gdbinit
+  - .gitconfig
+  - .gitignore
+  - .gvimrc
+  - .hushlogin
+  - .inputrc
+  - .macos
+  - .p10k.zsh
+  - .path
+  - .sources
+  - .tmux.conf.local
+  - .vim
+  - .vimrc
+  - .wgetrc
+  - .zprofile
+  - .zshrc
+
+# Install Oh My Zsh
+configure_oh_my_tmux: true
+
+# Install Oh My Tmux
+configure_oh_my_zsh: true
+
+homebrew_packages_security:
+  ## Next-generation aircrack with lots of new features
+  - aircrack-ng
+
+  ## Remove large files or passwords from Git history like git-filter-branch
+  - bfg
+
+  ## GNU binary tools for native development
+  - binutils
+
+  ## Searches a binary image for embedded files and executable code
+  - binwalk
+
+  ## Work on automating classical cipher cracking in C
+  - cifer
+
+  ## Tools to work with Android .dex and Java .class files
+  - dex2jar
+
+  ## TCP over DNS tunnel
+  - dns2tcp
+
+  ## Zip password cracker
+  - fcrackzip
+
+  ## Console program to recover files based on their headers and footers
+  - foremost
+
+  ## Tool to exploit hash length extension attack
+  - hashpump
+
+  ## Network logon cracker which supports many services
+  - hydra
+
+  ## Featureful UNIX password cracker
+  - john
+
+  ## Port-knock server
+  - knock
+
+  ## Image manipulation
+  - netpbm
+
+  ## Port scanning utility for large networks
+  - nmap
+
+  ## Print info and check PNG, JNG, and MNG files
+  - pngcheck
+
+  ## Penetration testing for SQL injection and database servers
+  - sqlmap
+
+  ## TCP/IP packet demultiplexer
+  - tcpflow
+
+  ## Replay saved tcpdump files at arbitrary speeds
+  - tcpreplay
+
+  ## Tools for building TCP client-server applications
+  - ucspi-tcp
+
+homebrew_packages_common:
+  - jq
+  - gnupg
+  - vim
+  - git
+  - git-lfs
+  - tmux
+  - reattach-to-user-namespace
+  - socat
+  - tcptrace
+  - vbindiff
+  - tree
+  - rlwrap
+  - rename
+  - pv
+  - pigz
+  - p7zip
+  - imagemagick
+  - ack
+  - github/gh/gh
+  - httpie
+  - iperf3
+  - awscli
+  - terraform
+
+homebrew_packages_macos:
+  - coreutils
+  - moreutils
+  - findutils
+  - gnu-sed
+  - bash
+  - bash-completion@2
+  - grep
+  - openssh
+  - ssh-copy-id
+  - gmp
+  - wget
+  - doxygen
+  - gettext
+  - go
+  - node
+  - nvm
+  - wrk
+  - homebrew/cask/iterm2
+  - homebrew/cask/google-chrome
+  - homebrew/cask/docker
+  - homebrew/cask/visual-studio-code
+  - homebrew/cask/firefox
+  - homebrew/cask/slack
+  - homebrew/cask/drawio
+  - homebrew/cask/wireshark

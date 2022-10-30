@@ -1,0 +1,59 @@
+- name: Install oh-my-zsh repository
+  shell:
+    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  args:
+    creates: ~/.oh-my-zsh
+  become: false
+  when: configure_oh_my_zsh
+
+- name: Install powerlevel10k repository
+  git:
+    repo: "{{ powerlevel_10k_repo }}"
+    dest: "{{ powerlevel_10k_repo_local_destination }}"
+    version: "{{ powerlevel_10k_repo_version }}"
+    accept_hostkey: "{{ oh_my_tmux_repo_accept_hostkey }}"
+    depth: 1
+  become: false
+  when: configure_oh_my_zsh
+
+- name: Install fonts for powerlevel10k
+  ansible.builtin.get_url:
+    url: "{{ item.url }}"
+    dest: "~/Library/Fonts/{{ item.name }}"
+    mode: "0440"
+  with_items:
+    - name: MesloLGS NF Regular.ttf
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+    - name: MesloLGS NF Bold.ttf
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+    - name: MesloLGS NF Italic.ttf
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+    - name: MesloLGS NF Bold Italic.ttf
+      url: https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install oh-my-tmux repository
+  git:
+    repo: "{{ oh_my_tmux_repo }}"
+    dest: "{{ oh_my_tmux_repo_local_destination }}"
+    version: "{{ oh_my_tmux_repo_version }}"
+    accept_hostkey: "{{ oh_my_tmux_repo_accept_hostkey }}"
+    depth: 1
+  become: false
+  when: configure_oh_my_tmux
+
+- name: "Link {{ oh_my_tmux_repo_local_destination }}/.tmux.conf to {{ dotfiles_home }}"
+  file:
+    src: "{{ oh_my_tmux_repo_local_destination }}/.tmux.conf"
+    dest: "{{ dotfiles_home }}/.tmux.conf"
+    state: link
+    mode: 0644
+  become: false
+  with_items: "{{ dotfiles_files }}"
+
+- name: Install dotfiles
+  ansible.builtin.include_role:
+    name: geerlingguy.dotfiles
+    apply:
+      tags:
+        - install

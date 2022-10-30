@@ -1,0 +1,10 @@
+---
+- name: Setup system configuration
+  vars_files:
+    - default-config.yml
+  hosts: all
+  roles:
+    - role: bootstrap
+    - role: software
+    - role: dotfiles
+      when: configure_dotfiles

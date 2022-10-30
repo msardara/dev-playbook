@@ -1,0 +1,20 @@
+- name: Set list of packages to install
+  set_fact:
+    package_list: "{{ homebrew_packages_common + homebrew_packages_macos }}"
+  when: ansible_distribution == 'MacOSX'
+
+- name: Set list of packages to install
+  set_fact:
+    package_list: "{{ homebrew_packages_common }}"
+  when: ansible_distribution != 'MacOSX'
+
+- name: Install command line tools in mac os
+  ansible.builtin.include_role:
+    name: elliotweiser.osx-command-line-tools
+  when: ansible_distribution == 'MacOSX'
+
+- name: Install homebrew packages
+  community.general.homebrew:
+    name: "{{ package_list }}"
+    state: present
+  failed_when: false

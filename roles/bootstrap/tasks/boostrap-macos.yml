@@ -1,0 +1,19 @@
+---
+- name: Check if curl executable is installed
+  command: test -e /usr/bin/curl
+  register: need_curl
+  # This command should always run, even in check mode
+  check_mode: false
+
+- name: Check if homebrew is installed
+  command: test -e /opt/homebrew/bin/brew
+  register: need_homebrew
+  failed_when: false
+  changed_when: false
+  # This command should always run, even in check mode
+  check_mode: false
+
+- name: Install homebrew
+  command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when:
+    - need_homebrew.rc != 0
