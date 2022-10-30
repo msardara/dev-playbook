@@ -17,4 +17,3 @@
   community.general.homebrew:
     name: "{{ package_list }}"
     state: present
-  failed_when: false

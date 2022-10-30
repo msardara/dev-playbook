@@ -8,3 +8,4 @@
     - role: software
     - role: dotfiles
       when: configure_dotfiles
+  environment: "{{ proxy_env }}"
