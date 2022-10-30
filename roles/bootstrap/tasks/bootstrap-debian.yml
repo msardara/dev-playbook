@@ -56,7 +56,6 @@
 
     - name: Install homebrew
       shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
-  become: true
   environment: "{{proxy_env}}"
   when:
     - need_homebrew.rc != 0
