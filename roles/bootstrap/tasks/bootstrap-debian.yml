@@ -58,7 +58,6 @@
       shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
 
     - name: Add homebrew to PATH
-      shell:
-        - echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"' >> /home/ubuntu/.bash_profile
+      shell: echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"' >> ~/.bash_profile
   when:
     - need_homebrew.rc != 0
