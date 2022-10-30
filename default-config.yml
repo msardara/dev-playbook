@@ -107,7 +107,6 @@ homebrew_packages_common:
   - git
   - git-lfs
   - tmux
-  - reattach-to-user-namespace
   - socat
   - tcptrace
   - vbindiff
@@ -145,6 +144,7 @@ homebrew_packages_macos:
   - node
   - nvm
   - wrk
+  - reattach-to-user-namespace
   - homebrew/cask/iterm2
   - homebrew/cask/google-chrome
   - homebrew/cask/docker
