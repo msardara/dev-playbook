@@ -1,10 +1,12 @@
 all:
   hosts:
     localhost:
-      ansible_connection: local
   children:
-    labs:
+    lab:
       hosts:
         localhost:
           ansible_connection: local
-
+    prod:
+      hosts:
+        localhost:
+          ansible_connection: local
