@@ -112,7 +112,6 @@ homebrew_packages_common:
   - vbindiff
   - tree
   - rlwrap
-  - rename
   - pv
   - pigz
   - p7zip
@@ -127,6 +126,7 @@ homebrew_packages_common:
   - bash
   - bash-completion@2
   - ifstat
+  - util-linux
 
 homebrew_packages_macos:
   - coreutils
