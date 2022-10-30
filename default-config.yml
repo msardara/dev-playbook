@@ -127,6 +127,7 @@ homebrew_packages_common:
   - zsh
   - bash
   - bash-completion@2
+  - ifstat
 
 homebrew_packages_macos:
   - coreutils
