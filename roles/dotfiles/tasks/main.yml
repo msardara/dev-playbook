@@ -48,6 +48,7 @@
     dest: "{{ dotfiles_home }}/.tmux.conf"
     state: link
     mode: 0644
+    force: yes
   become: false
   with_items: "{{ dotfiles_files }}"
 
@@ -57,3 +58,7 @@
     apply:
       tags:
         - install
+
+- name: Set zsh as default shell
+  user: name="{{ ansible_user_id }}" shell=/usr/bin/zsh
+  become: true

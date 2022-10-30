@@ -124,14 +124,15 @@ homebrew_packages_common:
   - iperf3
   - awscli
   - terraform
+  - zsh
+  - bash
+  - bash-completion@2
 
 homebrew_packages_macos:
   - coreutils
   - moreutils
   - findutils
   - gnu-sed
-  - bash
-  - bash-completion@2
   - grep
   - openssh
   - ssh-copy-id

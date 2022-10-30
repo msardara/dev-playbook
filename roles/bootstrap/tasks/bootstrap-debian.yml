@@ -50,7 +50,28 @@
   become: true
 
 - name: Install homebrew
-  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
   become: true
   when:
     - need_homebrew.rc != 0
+
+- name: Add 'homebrew' group
+  ansible.builtin.group:
+    name: homebrew
+    state: present
+  become: true
+
+- name: Set homebrew home to 'homebrew' group
+  ansible.builtin.file:
+    path: /home/linuxbrew/.linuxbrew
+    group: homebrew
+    recurse: yes
+    mode: '0775'
+  become: true
+
+- name: "Add {{ ansible_user_id }} to linuxbrew group"
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: homebrew
+    append: yes
+  become: true
