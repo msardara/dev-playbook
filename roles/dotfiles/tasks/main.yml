@@ -64,5 +64,5 @@
   register: brew_prefix
 
 - name: Set zsh as default shell
-  user: name="{{ ansible_user_id }}" shell="{{ brew_prefix.stdout }}"/bin/zsh
+  user: name="{{ ansible_user_id }}" shell="{{ brew_prefix.stdout }}/bin/zsh"
   become: true
