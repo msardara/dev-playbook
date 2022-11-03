@@ -14,6 +14,14 @@
   check_mode: false
 
 - name: Install homebrew
-  command: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  block:
+    - name: Show http proxy
+      shell: echo "Using proxy $http_proxy"
+
+    - name: Install homebrew
+      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
+
+    - name: Add homebrew to PATH
+      shell: echo 'eval \"$(/opt/homebrew/bin/brew shellenv)\"' >> ~/.bash_profile
   when:
     - need_homebrew.rc != 0
