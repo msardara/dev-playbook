@@ -154,3 +154,6 @@ homebrew_packages_macos:
   - homebrew/cask/slack
   - homebrew/cask/drawio
   - homebrew/cask/wireshark
+  - 1password
+  - 1password/tap/1password-cli
+
