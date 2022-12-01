@@ -6,6 +6,16 @@
   become: false
   when: configure_oh_my_zsh
 
+- name: Install oh-my-zsh plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ oh_my_shh_plugin_dir }}/{{ item.name }}"
+    version: "{{ item.revision }}"
+    accept_hostkey: true
+  become: false
+  loop: "{{ ohmyzsh_plugins }}"
+  when: configure_oh_my_zsh
+
 - name: Install powerlevel10k repository
   git:
     repo: "{{ powerlevel_10k_repo }}"

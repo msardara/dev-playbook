@@ -2,11 +2,17 @@
 configure_oh_my_zsh: true
 oh_my_zsh_path: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 oh_my_zsh_dir: ~/.oh-my-zsh
+oh_my_shh_plugin_dir: "{{ oh_my_zsh_dir }}/plugins"
 
 powerlevel_10k_repo: https://github.com/romkatv/powerlevel10k.git
 powerlevel_10k_repo_local_destination: "{{ oh_my_zsh_dir }}/themes/powerlevel10k"
 powerlevel_10k_repo_version: master
 powerlevel_10k_repo_accept_hostkey: true
+
+ohmyzsh_plugins:
+  - name: zsh-autosuggestions
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    revision: master
 
 configure_oh_my_tmux: true
 oh_my_tmux_repo: https://github.com/gpakosz/.tmux
