@@ -17,3 +17,4 @@
   community.general.homebrew:
     name: "{{ package_list }}"
     state: present
+  ignore_errors: true

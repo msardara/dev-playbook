@@ -129,6 +129,10 @@ homebrew_packages_common:
   - ifstat
   - util-linux
   - govc
+  - thefuck
+  - fzf
+  - helm
+  - kubectl
 
 homebrew_packages_macos:
   - coreutils
@@ -157,4 +161,3 @@ homebrew_packages_macos:
   - homebrew/cask/wireshark
   - 1password
   - 1password/tap/1password-cli
-
