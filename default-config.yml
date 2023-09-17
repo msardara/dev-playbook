@@ -160,4 +160,4 @@ homebrew_packages_macos:
   - homebrew/cask/drawio
   - homebrew/cask/wireshark
   - 1password
-  - 1password/tap/1password-cli
+  - 1password-cli
