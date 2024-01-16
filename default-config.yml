@@ -118,7 +118,7 @@ homebrew_packages_common:
   - p7zip
   - imagemagick
   - ack
-  - github/gh/gh
+  - gh
   - httpie
   - iperf3
   - awscli
