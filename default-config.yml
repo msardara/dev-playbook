@@ -133,6 +133,24 @@ homebrew_packages_common:
   - fzf
   - helm
   - kubectl
+  - ripgrep
+  - bat
+  - zoxide
+  - xcp
+  - dysk
+  - delta
+  - difftastic
+  - dua
+  - dust
+  - dutree
+  - erdtree
+  - pdu
+  - fd
+  - eza
+  - lsd
+  - procs
+  - rip
+  - sd
 
 homebrew_packages_macos:
   - coreutils
