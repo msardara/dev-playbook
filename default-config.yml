@@ -32,6 +32,7 @@ dotfiles_files:
   - .wgetrc
   - .zprofile
   - .zshrc
+  - .config/nvim
 
 # Install Oh My Zsh
 configure_oh_my_tmux: true
