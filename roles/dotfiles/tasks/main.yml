@@ -1,8 +1,10 @@
 - name: Install oh-my-zsh repository
-  shell:
-    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-  args:
-    creates: ~/.oh-my-zsh
+  git:
+    repo: "{{ oh_my_zsh_repo }}"
+    dest: "{{ oh_my_zsh_dir }}"
+    version: "{{ oh_my_zsh_repo_version }}"
+    accept_hostkey: true
+    depth: 1
   become: false
   when: configure_oh_my_zsh
 

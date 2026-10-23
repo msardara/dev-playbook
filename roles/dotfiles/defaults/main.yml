@@ -1,8 +1,9 @@
 ---
 configure_oh_my_zsh: true
-oh_my_zsh_path: https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+oh_my_zsh_repo: https://github.com/ohmyzsh/ohmyzsh.git
+oh_my_zsh_repo_version: master
 oh_my_zsh_dir: ~/.oh-my-zsh
-oh_my_shh_plugin_dir: "{{ oh_my_zsh_dir }}/plugins"
+oh_my_shh_plugin_dir: "{{ oh_my_zsh_dir }}/custom/plugins"
 
 powerlevel_10k_repo: https://github.com/romkatv/powerlevel10k.git
 powerlevel_10k_repo_local_destination: "{{ oh_my_zsh_dir }}/themes/powerlevel10k"
