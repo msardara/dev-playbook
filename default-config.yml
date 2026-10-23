@@ -65,3 +65,18 @@ homebrew_packages_macos:
   - homebrew/cask/iterm2
   - homebrew/cask/claude-code
   - homebrew/cask/font-jetbrains-mono-nerd-font
+
+# Packages installed with apt on Debian/Ubuntu (no homebrew on linux)
+apt_packages:
+  - git
+  - gnupg
+  - zsh
+  - tmux
+  - fzf
+  - ripgrep
+  - fd-find
+  - bat
+  - zoxide
+  - jq
+  - gh
+  - neovim

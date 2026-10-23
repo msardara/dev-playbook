@@ -72,16 +72,22 @@
 - name: Get homebrew prefix
   command: brew --prefix
   register: brew_prefix
+  changed_when: false
+  when: ansible_distribution == 'MacOSX'
+
+- name: Set zsh path
+  set_fact:
+    zsh_path: "{{ (brew_prefix.stdout ~ '/bin/zsh') if ansible_distribution == 'MacOSX' else '/usr/bin/zsh' }}"
 
 - name: Set zsh as default shell
-  user: name="{{ ansible_user_id }}" shell="{{ brew_prefix.stdout }}/bin/zsh"
+  user: name="{{ ansible_user_id }}" shell="{{ zsh_path }}"
   become: true
 
 - name: Check if zsh is already in the login shells
   lineinfile:
     state: absent
     path: /etc/shells
-    regexp: "{{ brew_prefix.stdout }}/bin/zsh"
+    regexp: "{{ zsh_path }}"
   check_mode: true
   changed_when: false
   register: check
@@ -90,7 +96,7 @@
   lineinfile:
     state: present
     path: /etc/shells
-    line: "{{ brew_prefix.stdout }}/bin/zsh"
+    line: "{{ zsh_path }}"
   when: check.found == 0
   become: true
 

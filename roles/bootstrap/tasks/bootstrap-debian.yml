@@ -1,12 +1,4 @@
 ---
-- name: Check if homebrew is installed
-  command: test -e /home/linuxbrew/.linuxbrew/bin/brew
-  register: need_homebrew
-  failed_when: false
-  changed_when: false
-  # This command should always run, even in check mode
-  check_mode: false
-
 - name: Check http::proxy in apt configuration files
   raw: apt-config dump | grep -qsi 'Acquire::http::proxy'
   register: need_http_proxy
@@ -48,16 +40,3 @@
     name: git
     update_cache: "{{ update_cache }}"
   become: true
-
-- name: Install homebrew
-  block:
-    - name: Show http proxy
-      shell: echo "Using proxy $http_proxy"
-
-    - name: Install homebrew
-      shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" < /dev/null
-
-    - name: Add homebrew to PATH
-      shell: echo 'eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\"' >> ~/.bash_profile
-  when:
-    - need_homebrew.rc != 0
