@@ -1,0 +1,9 @@
+[project]
+name = "dev-playbook"
+version = "0.1.0"
+description = "Ansible playbook to set up my development machine"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ansible>=11",
+]
