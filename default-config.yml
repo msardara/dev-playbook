@@ -69,6 +69,7 @@ homebrew_packages_macos:
 
 # Packages installed with apt on Debian/Ubuntu (no homebrew on linux)
 apt_packages:
+  - build-essential
   - git
   - gnupg
   - zsh

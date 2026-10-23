@@ -17,3 +17,54 @@
     update_cache: "{{ update_cache }}"
   become: true
   when: ansible_os_family == 'Debian'
+
+- name: Create local bin directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    mode: "0755"
+  become: false
+  when: ansible_os_family == 'Debian'
+
+- name: Link fdfind as fd
+  ansible.builtin.file:
+    src: /usr/bin/fdfind
+    dest: "{{ ansible_env.HOME }}/.local/bin/fd"
+    state: link
+  become: false
+  when: ansible_os_family == 'Debian'
+
+- name: Link batcat as bat
+  ansible.builtin.file:
+    src: /usr/bin/batcat
+    dest: "{{ ansible_env.HOME }}/.local/bin/bat"
+    state: link
+  become: false
+  when: ansible_os_family == 'Debian'
+
+- name: Check if lazygit is installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/lazygit
+  register: lazygit_bin
+  when: ansible_os_family == 'Debian'
+
+- name: Install lazygit from the latest GitHub release
+  when:
+    - ansible_os_family == 'Debian'
+    - not lazygit_bin.stat.exists
+  block:
+    - name: Get latest lazygit release
+      ansible.builtin.uri:
+        url: https://api.github.com/repos/jesseduffield/lazygit/releases/latest
+        return_content: true
+      register: lazygit_release
+
+    - name: Download and extract lazygit
+      ansible.builtin.unarchive:
+        src: "https://github.com/jesseduffield/lazygit/releases/download/{{ lazygit_release.json.tag_name }}/lazygit_{{ lazygit_release.json.tag_name | regex_replace('^v', '') }}_linux_{{ 'arm64' if ansible_architecture == 'aarch64' else 'x86_64' }}.tar.gz"
+        dest: /usr/local/bin
+        include: lazygit
+        remote_src: true
+        mode: "0755"
+      become: true
+
